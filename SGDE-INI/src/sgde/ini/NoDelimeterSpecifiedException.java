@@ -5,7 +5,7 @@
 package sgde.ini;
 
 /**
- *
+ * Thrown if no flag is passed for what delimeter to use
  * @author kdsweenx
  */
 public class NoDelimeterSpecifiedException extends Exception{

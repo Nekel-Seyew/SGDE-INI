@@ -5,11 +5,11 @@
 package sgde.ini;
 
 /**
- *
+ * Thrown when no delimeter was found in a name-value pair.
  * @author kdsweenx
  */
 public class NoDelimeterFoundException extends Exception{
     public NoDelimeterFoundException(String sec, String name){
-        super("No Delimeter found in section: "+sec+" name: "+name);
+        super("No Delimeter found in section: ["+sec+"] name: "+name);
     }
 }

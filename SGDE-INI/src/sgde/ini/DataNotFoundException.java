@@ -5,11 +5,11 @@
 package sgde.ini;
 
 /**
- *
+ * A class which is thrown when the requested data cannot be found.
  * @author kdsweenx
  */
 public class DataNotFoundException extends Exception{
-    public DataNotFoundException(String dataName){
-        super("Data with name: "+dataName+" not found!");
+    public DataNotFoundException(String dataName, String section){
+        super("Data with name: "+dataName+" not found. Section ["+section+"]");
     }
 }
