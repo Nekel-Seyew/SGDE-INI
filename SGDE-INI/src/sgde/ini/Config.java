@@ -10,7 +10,7 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 /**
- *
+ * A Database which holds all of the information stored in an INI file.
  * @author kdsweenx
  */
 public class Config {
