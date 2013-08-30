@@ -13,7 +13,7 @@ import java.util.Scanner;
  * A Database which holds all of the information stored in an INI file.
  * @author kdsweenx
  */
-public class Config {
+public class INI_Config {
     /**
      * Flag for ignoring whitespace in both the name and value fields.
      */
@@ -57,7 +57,7 @@ public class Config {
     /**
      * Default Constructor. Uses Default Settings.
      */
-    public Config(){
+    public INI_Config(){
         configData=new Hashtable<>();
         settings=DEFAULT_SETTINGS;
     }
@@ -65,7 +65,7 @@ public class Config {
      * Constructor for custom settings.
      * @param setting custom flag for settings.
      */
-    public Config(char setting){
+    public INI_Config(char setting){
         configData=new Hashtable<>();
         settings=setting;
     }
@@ -134,8 +134,8 @@ public class Config {
      * @throws NoDelimeterSpecifiedException if no flag is passed for the type of delimeter to be used
      * @throws InvalidFlagException general exception thrown if two opposing flags are used.
      */
-    public static Config getConfig(String fileName, char settings) throws FileNotFoundException, NoDelimeterFoundException, SectionNotFoundException, NoDelimeterSpecifiedException, InvalidFlagException{
-        Config conf=new Config(settings);
+    public static INI_Config getConfig(String fileName, char settings) throws FileNotFoundException, NoDelimeterFoundException, SectionNotFoundException, NoDelimeterSpecifiedException, InvalidFlagException{
+        INI_Config conf=new INI_Config(settings);
         Scanner reader = new Scanner(new File(fileName));
         String currentSection=null;
         while(reader.hasNext()){
