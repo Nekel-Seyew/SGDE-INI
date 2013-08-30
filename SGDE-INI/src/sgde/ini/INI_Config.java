@@ -140,7 +140,6 @@ public class INI_Config {
         String currentSection=null;
         while(reader.hasNext()){
             String line=reader.nextLine();
-            System.out.println(line);
             if(line.contains("[") && line.contains("]")){
                 conf.newSection(line.substring(line.indexOf("[")+1,line.indexOf("]")));
                 currentSection=new String(line.substring(line.indexOf("[")+1,line.indexOf("]")));
