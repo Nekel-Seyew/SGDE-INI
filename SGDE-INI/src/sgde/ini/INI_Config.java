@@ -6,6 +6,8 @@ package sgde.ini;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -53,6 +55,7 @@ public class INI_Config {
     
     private Hashtable<String, Hashtable<String, Object>> configData;
     private char settings;
+    private String fileName;
     
     /**
      * Default Constructor. Uses Default Settings.
@@ -123,6 +126,9 @@ public class INI_Config {
         return data;
         
     }
+    public void setFilePath(String path){
+        this.fileName=new String(path);
+    }
     /**
      * A static function for constructing a config database based upon the ini file.
      * @param fileName path to the ini file.
@@ -136,6 +142,7 @@ public class INI_Config {
      */
     public static INI_Config getConfig(String fileName, char settings) throws FileNotFoundException, NoDelimeterFoundException, SectionNotFoundException, NoDelimeterSpecifiedException, InvalidFlagException{
         INI_Config conf=new INI_Config(settings);
+        conf.setFilePath(fileName);
         Scanner reader = new Scanner(new File(fileName));
         String currentSection=null;
         while(reader.hasNext()){
@@ -216,6 +223,32 @@ public class INI_Config {
             
         }
         return conf;
+    }
+    
+    public static File writeINI(INI_Config conf) throws IOException{
+        File f = new File(conf.fileName);
+        if(f.exists()){
+            f.mkdirs();
+        }
+        FileWriter writer= new FileWriter(f);
+        for(String s: conf.configData.keySet()){
+            writer.write("["+s+"]\n");
+            for(String k: conf.configData.get(s).keySet()){
+                writer.write(k);
+                if((conf.settings & INI_Config.COLON_DELIMETER) > 0){
+                    writer.write(":");
+                }
+                if((conf.settings & INI_Config.EQUAL_DELIMETER)>0){
+                    writer.write("=");
+                }
+                Object o = conf.configData.get(s).get(k);
+                writer.write(o.toString());
+                writer.write("\n");
+            }
+        }
+        writer.close();
+        
+        return f;
     }
     
 }
